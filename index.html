@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Siddhivinayak Tours & Travels | Cab & Taxi Services Pune</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+    
+    /* Hero Slideshow - Fullscreen with increased height */
+    .hero-slideshow {
+      position: absolute;
+      top: 80px;           /* header height */
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 80px);
+      min-height: 700px;   /* Increased minimum height */
+      z-index: 0;
+    }
+    
+    .hero-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: opacity 1.5s ease-in-out;
+    }
+    
+    .hero-slide.active {
+      opacity: 1;
+    }
+    
+    /* Navigation dots - minimal style */
+    .hero-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .hero-dot.active {
+      background: #f59e0b; /* amber-500 */
+      transform: scale(1.3);
+    }
+    
+    /* Navigation arrows - minimal style */
+    .hero-arrow {
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .hero-arrow:hover {
+      background: rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Custom card styling for services */
+    .service-card {
+      border-top: 4px solid #0d9488; /* teal-600 */
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    /* Stats section styling with increased spacing */
+    .stats-section {
+      background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+      position: relative;
+      z-index: 20;
+      margin-top: 30px; /* Added gap between hero and stats */
+    }
+    
+    .stat-box {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .stat-icon {
+      transition: all 0.3s ease;
+    }
+    
+    .stat-box:hover .stat-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .hero-slideshow {
+        min-height: 600px;
+        height: calc(100vh - 80px);
+      }
+      
+      .stats-section {
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+<!-- HEADER -->
+<header class="bg-teal-400 shadow fixed w-full z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <h1 class="text-2xl font-extrabold  text-white">🚖 Siddhivinayak Tours & Travels </h1>
+
+    <nav class="hidden md:flex space-x-8 font-semibold">
+      <a href="#home" class="text-white hover:text-teal-100 transition">Home</a>
+      <a href="#about" class="text-white hover:text-teal-100 transition">About</a>
+      <a href="#services" class="text-white hover:text-teal-100 transition">Services</a>
+      <a href="#contact" class="text-white hover:text-teal-100 transition">Contact</a>
+    </nav>
+    
+    <!-- Mobile menu button -->
+    <button class="md:hidden text-white" onclick="toggleMobileMenu()">
+      <i class="fas fa-bars text-xl"></i>
+    </button>
+  </div>
+  
+  <!-- Mobile menu -->
+  <div id="mobileMenu" class="md:hidden hidden bg-amber-700 px-6 py-4">
+    <div class="flex flex-col space-y-4">
+      <a href="#home" class="text-white hover:text-teal-100 transition font-semibold">Home</a>
+      <a href="#about" class="text-white hover:text-teal-100 transition font-semibold">About</a>
+      <a href="#services" class="text-white hover:text-teal-100 transition font-semibold">Services</a>
+      <a href="#contact" class="text-white hover:text-teal-100 transition font-semibold">Contact</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO / HOME - ONLY CAR SLIDESHOW -->
+<section id="home" class="relative min-h-[calc(100vh-80px)] pt-[80px] overflow-hidden" style="min-height: 700px;">
+  <div class="hero-carousel">
+    <div class="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('../images/multiplecar.jpg');"></div>
+      <div class="hero-slide" style="background-image: url('../images/drivercab.webp')"></div>
+      <div class="hero-slide" style="background-image: url('../images/taxi.jpeg');"></div>
+      <div class="hero-slide" style="background-image: url('../images/booking.jpeg');"></div>
+    </div>
+    
+    <!-- Overlay for better text visibility -->
+    <div class="absolute inset-0 bg-black/30 z-10"></div>
+    
+    <!-- Content on hero with increased spacing -->
+    <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
+      <div class="mb-8"></div> <!-- Added extra spacing -->
+      <h2 class="text-4xl md:text-6xl font-bold text-white mb-6">
+        Premium Cab Services in Pune
+      </h2>
+      <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl">
+        Experience comfortable, safe, and reliable travel with our professional drivers
+      </p>
+      <a href="#contact" 
+         class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-4 px-10 rounded-full text-lg transition duration-300 transform hover:scale-105">
+        <i class="fas fa-phone-alt mr-3"></i> Book Now
+      </a>
+      <div class="mt-10"></div> <!-- Added extra spacing -->
+    </div>
+    
+    <!-- Navigation dots for hero slideshow -->
+    <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-30 flex gap-3">
+      <div class="hero-dot active" onclick="goToHeroSlide(0)"></div>
+      <div class="hero-dot" onclick="goToHeroSlide(1)"></div>
+      <div class="hero-dot" onclick="goToHeroSlide(2)"></div>
+      <div class="hero-dot" onclick="goToHeroSlide(3)"></div>
+    </div>
+    
+    <!-- Navigation arrows for hero -->
+    <button class="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 hero-arrow" onclick="prevHeroSlide()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 hero-arrow" onclick="nextHeroSlide()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</section>
+
+<section class="stats-section py-8 relative z-10"> <!-- Reduced from py-16 -->
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6"> <!-- Reduced from gap-10 -->
+      
+      <!-- Happy Clients -->
+      <div class="stat-box rounded-xl p-4 text-center text-white transform hover:scale-105 transition duration-300"> <!-- Reduced from p-10 -->
+        <div class="flex justify-center mb-4"> <!-- Reduced from mb-6 -->
+          <div class="bg-white/20 p-3 rounded-full"> <!-- Reduced from p-5 -->
+            <i class="fas fa-users text-3xl stat-icon"></i> <!-- Reduced from text-5xl -->
+          </div>
+        </div>
+        <div class="text-4xl font-bold mb-2">3200+</div> <!-- Reduced from text-6xl -->
+        <div class="text-xl font-semibold mb-2">Happy Clients</div> <!-- Reduced from text-2xl -->
+        <p class="text-white/80 text-sm">Satisfied customers who trust our service</p> <!-- Reduced from text-lg -->
+      </div>
+      
+      <!-- Kilometers -->
+      <div class="stat-box rounded-xl p-4 text-center text-white transform hover:scale-105 transition duration-300">
+        <div class="flex justify-center mb-4">
+          <div class="bg-white/20 p-3 rounded-full">
+            <i class="fas fa-road text-3xl stat-icon"></i>
+          </div>
+        </div>
+        <div class="text-4xl font-bold mb-2">1,005,800+</div>
+        <div class="text-xl font-semibold mb-2">Kilometers</div>
+        <p class="text-white/80 text-sm">Safely traveled across Maharashtra</p>
+      </div>
+      
+      <!-- Experience -->
+      <div class="stat-box rounded-xl p-4 text-center text-white transform hover:scale-105 transition duration-300">
+        <div class="flex justify-center mb-4">
+          <div class="bg-white/20 p-3 rounded-full">
+            <i class="fas fa-calendar-check text-3xl stat-icon"></i>
+          </div>
+        </div>
+        <div class="text-4xl font-bold mb-2">10+</div>
+        <div class="text-xl font-semibold mb-2">Years Experience</div>
+        <p class="text-white/80 text-sm">Providing reliable cab services since 2014</p>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">About Us</h2>
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      
+      <div>
+        <div class="bg-white p-8 rounded-3xl shadow-lg">
+          <p class="text-gray-600 mb-6 text-lg">
+            Pune-based trusted taxi service offering local, outstation & airport travel with comfort and safety.
+          </p>
+          <ul class="space-y-4 font-medium text-gray-700">
+            <li class="flex items-center p-3 bg-teal-50 rounded-lg">
+              <div class="bg-teal-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-teal-600"></i>
+              </div>
+              <span>Local & Outstation Cabs</span>
+            </li>
+            <li class="flex items-center p-3 bg-teal-50 rounded-lg">
+              <div class="bg-teal-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-teal-600"></i>
+              </div>
+              <span>Airport Pickup & Drop</span>
+            </li>
+            <li class="flex items-center p-3 bg-teal-50 rounded-lg">
+              <div class="bg-teal-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-teal-600"></i>
+              </div>
+              <span>Corporate Travel</span>
+            </li>
+            <li class="flex items-center p-3 bg-teal-50 rounded-lg">
+              <div class="bg-teal-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-teal-600"></i>
+              </div>
+              <span>Well-Maintained Fleet</span>
+            </li>
+            <li class="flex items-center p-3 bg-teal-50 rounded-lg">
+              <div class="bg-teal-100 p-2 rounded-full mr-4">
+                <i class="fas fa-check text-teal-600"></i>
+              </div>
+              <span>24/7 Service</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="relative">
+        <img src="../images/drivercab.webp" class="rounded-3xl shadow-lg w-full" alt="About Cab Service">
+        <div class="absolute -bottom-4 -right-4 bg-amber-500 text-white p-6 rounded-2xl shadow-lg">
+          <div class="text-3xl font-bold">10+ Years</div>
+          <div class="text-sm">Trusted Service</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="bg-white py-16">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Us</h2>
+    <div class="grid md:grid-cols-4 gap-6 text-center">
+      
+      <div class="p-6 rounded-2xl shadow hover:shadow-xl transition border-t-4 border-teal-500">
+        <i class="fa-solid fa-shield-halved text-4xl text-amber-400 mb-4"></i>
+        <h3 class="font-bold text-xl text-gray-800">Safe Rides</h3>
+        <p class="text-gray-600">Verified drivers & clean cars</p>
+      </div>
+
+      <div class="p-6 rounded-2xl shadow hover:shadow-xl transition border-t-4 border-teal-500">
+        <i class="fa-solid fa-clock text-4xl text-amber-400  mb-4"></i>
+        <h3 class="font-bold text-xl text-gray-80">On Time</h3>
+        <p class="text-gray-600">Punctual pickup & drop</p>
+      </div>
+
+      <div class="p-6 rounded-2xl shadow hover:shadow-xl transition border-t-4 border-teal-500">
+        <i class="fa-solid fa-car text-4xl text-amber-400  mb-4"></i>
+        <h3 class="font-bold text-xl text-gray-80">Well Maintained</h3>
+        <p class="text-gray-600">AC & Non-AC vehicles</p>
+      </div>
+
+      <div class="p-6 rounded-2xl shadow hover:shadow-xl transition border-t-4 border-teal-500">
+        <i class="fa-solid fa-wallet text-4xl text-amber-400  mb-4"></i>
+        <h3 class="font-bold text-xl text-gray-800">Best Price</h3>
+        <p class="text-gray-600">No hidden charges</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Our Services</h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <div class="service-card bg-white p-6 rounded-3xl shadow border-t-4 border-teal-600">
+        <div class="relative overflow-hidden rounded-xl mb-4">
+          <img src="../images/booking.jpeg" class="h-48 w-full object-cover transform hover:scale-110 transition duration-500">
+          <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+            Popular
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-gray-700">Local Cab Service</h3>
+        <p class="text-gray-600 mb-4">Daily city rides with flexible timing.</p>
+        <div class="flex items-center text-teal-600">
+          <i class="fas fa-phone-alt mr-2"></i>
+          <span>Instant Booking Available</span>
+        </div>
+      </div>
+
+      <div class="service-card bg-white p-6 rounded-3xl shadow border-t-4 border-teal-600">
+        <div class="relative overflow-hidden rounded-xl mb-4">
+          <img src="../images/taxi.jpeg" class="h-48 w-full object-cover transform hover:scale-110 transition duration-500">
+          <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+            24/7
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-gray-700">Airport Taxi</h3>
+        <p class="text-gray-600 mb-4">On-time airport pickup & drop.</p>
+        <div class="flex items-center text-teal-600">
+          <i class="fas fa-plane mr-2"></i>
+          <span>Flight Tracking Service</span>
+        </div>
+      </div>
+
+      <div class="service-card bg-white p-6 rounded-3xl shadow border-t-4 border-teal-600">
+        <div class="relative overflow-hidden rounded-xl mb-4">
+          <img src="../images/cab.jpeg" class="h-48 w-full object-cover transform hover:scale-110 transition duration-500">
+          <div class="absolute top-4 right-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+            Multi-day
+          </div>
+        </div>
+        <h3 class="text-2xl font-bold mb-2 text-gray-700">Outstation Tours</h3>
+        <p class="text-gray-600 mb-4">Comfortable long-distance travel.</p>
+        <div class="flex items-center text-teal-600">
+          <i class="fas fa-map-marker-alt mr-2"></i>
+          <span>Any Destination in Maharashtra</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-16 bg-white">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Contact Us</h2>
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <div>
+        <p class="mb-6 text-gray-600 text-lg">Call or WhatsApp for instant booking.</p>
+        <div class="space-y-4">
+          <p class="text-xl text-gray-600"><i class="fa-solid fa-phone text-gray-600 mr-3"></i> 7722082054</p>
+          <p class="text-xl text-gray-600"><i class="fa-solid fa-location-dot text-gray-600 mr-3"></i> Pune, Maharashtra</p>
+          <p class="text-xl text-gray-600"><i class="fa-solid fa-clock text-gray-600 mr-3"></i> 24/7 Available</p>
+        </div>
+      </div>
+<form class="bg-white text-gray-800 p-8 rounded-3xl shadow space-y-4">
+  <div class="text-center mb-4">
+    <h3 class="text-2xl font-bold text-gray-800">Quick Booking Form</h3>
+    <p class="text-gray-700">Get a call back within 15 minutes</p>
+  </div>
+  
+  <!-- Name -->
+  <input type="text" placeholder="Your Name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-teal-600">
+  
+  <!-- Email -->
+  <input type="email" placeholder="Email Address" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-teal-600">
+  
+  <!-- Phone -->
+  <input type="tel" placeholder="Phone Number" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-teal-600">
+  
+  <!-- Address -->
+  <textarea placeholder="Pickup Address" rows="2" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-teal-600"></textarea>
+  
+  <!-- Travel Details -->
+  <textarea placeholder="Travel Details (Pickup, Drop, Date, Time)" rows="4" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-teal-600 focus:border-teal-600"></textarea>
+  
+  <button class="w-full bg-amber-500 text-white py-3 rounded-full font-bold hover:bg-amber-600 transition flex items-center justify-center">
+    <i class="fas fa-paper-plane mr-2"></i>
+    Submit Booking Request
+  </button>
+  
+  <p class="text-center text-sm text-gray-500">We respect your privacy. No spam, ever.</p>
+</form>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-teal-600 text-teal-200 py-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-8">
+      <div>
+        <h3 class="text-2xl font-bold text-white mb-4">🚖 Siddhivinayak Tours</h3>
+        <p class="text-white">Pune's most trusted cab service since 2014. Your journey, our responsibility.</p>
+      </div>
+      
+      <div>
+        <h4 class="text-xl font-bold text-white mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#home" class="text-white transition">Home</a></li>
+          <li><a href="#about" class="text-white transition">About Us</a></li>
+          <li><a href="#services" class="text-white transition">Services</a></li>
+          <li><a href="#contact" class="text-white transition">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-xl font-bold text-white mb-4">Contact Info</h4>
+        <ul class="space-y-2">
+          <li class="flex items-center"><i class="fas fa-phone text-amber-500 mr-3"></i> 7722082054</li>
+          <li class="flex items-center"><i class="fas fa-map-marker-alt text-amber-500 mr-3"></i> Pune, Maharashtra</li>
+          <li class="flex items-center"><i class="fas fa-clock text-amber-500 mr-3"></i> 24/7 Service</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="border-t border-teal-700 mt-8 pt-6 text-center text-white">
+      <p>© 2026 Siddhivinayak Tours & Travels | Pune's Trusted Cab Service</p>
+      <p class="text-sm mt-2 text-white">Designed with ❤️ for Pune's Travelers</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Hero Slideshow functionality
+  let currentHeroSlide = 0;
+  const heroSlides = document.querySelectorAll('.hero-slide');
+  const heroDots = document.querySelectorAll('.hero-dot');
+  let heroInterval;
+  
+  // Initialize hero slideshow
+  function initHeroSlideshow() {
+    heroInterval = setInterval(nextHeroSlide, 5000); // Change slide every 5 seconds
+  }
+  
+  // Go to specific hero slide
+  function goToHeroSlide(n) {
+    // Remove active class from all slides and dots
+    heroSlides.forEach(slide => slide.classList.remove('active'));
+    heroDots.forEach(dot => dot.classList.remove('active'));
+    
+    // Update current slide
+    currentHeroSlide = n;
+    
+    // Add active class to current slide and dot
+    heroSlides[currentHeroSlide].classList.add('active');
+    heroDots[currentHeroSlide].classList.add('active');
+    
+    // Reset the interval
+    resetHeroInterval();
+  }
+  
+  // Next hero slide
+  function nextHeroSlide() {
+    let next = currentHeroSlide + 1;
+    if (next >= heroSlides.length) next = 0;
+    goToHeroSlide(next);
+  }
+  
+  // Previous hero slide
+  function prevHeroSlide() {
+    let prev = currentHeroSlide - 1;
+    if (prev < 0) prev = heroSlides.length - 1;
+    goToHeroSlide(prev);
+  }
+  
+  // Reset hero interval when user interacts
+  function resetHeroInterval() {
+    clearInterval(heroInterval);
+    initHeroSlideshow();
+  }
+  
+  // Mobile menu functionality
+  function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenu.classList.toggle('hidden');
+  }
+  
+  // Animated counter for stats
+  function animateCounter(element, start, end, duration) {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const value = Math.floor(progress * (end - start) + start);
+      
+      // Format number with commas
+      element.textContent = value.toLocaleString();
+      
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set first slide as active
+    goToHeroSlide(0);
+    initHeroSlideshow();
+    
+    // Pause hero on hover
+    const heroSection = document.querySelector('#home');
+    heroSection.addEventListener('mouseenter', () => {
+      clearInterval(heroInterval);
+    });
+    
+    heroSection.addEventListener('mouseleave', () => {
+      initHeroSlideshow();
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('#mobileMenu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.add('hidden');
+      });
+    });
+    
+    // Animate counters when stats section comes into view
+    const observerOptions = {
+      threshold: 0.5
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Animate happy clients counter
+          const happyClients = document.querySelector('.stat-box:nth-child(1) .text-6xl');
+          animateCounter(happyClients, 0, 3200, 2000);
+          
+          // Animate kilometers counter
+          const kilometers = document.querySelector('.stat-box:nth-child(2) .text-6xl');
+          animateCounter(kilometers, 0, 1005800, 2500);
+          
+          // Animate experience counter
+          const experience = document.querySelector('.stat-box:nth-child(3) .text-6xl');
+          animateCounter(experience, 0, 10, 1500);
+          
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    // Observe stats section
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) {
+      observer.observe(statsSection);
+    }
+  });
+</script>
+
+</body>
+</html>
